@@ -1,4 +1,4 @@
-// src/components/GameBoard.js
+// src/components/GameBoard.jsx
 import React, { useState, useEffect } from "react";
 import Tile from "./Tile";
 import ScoreBoard from "./ScoreBoard";
@@ -8,15 +8,15 @@ import secondElem from "../assets/second-elem.png";
 import thirdElem from "../assets/third-elem.png";
 import fourthElem from "../assets/fourth-elem.png";
 import fifthElem from "../assets/fifth-elem.png";
-import bgMusic from "../assets/bgrSoundGame.mp3";
 
 const GameBoard = () => {
-  // const audioRef = React.createRef();
+  const audioRef = React.createRef();
   const [board, setBoard] = useState(generateInitialBoard());
   const [score, setScore] = useState(0);
   const [selectedTile, setSelectedTile] = useState(null);
   const [animationClasses, setAnimationClasses] = useState({});
   const [dropAnimations, setDropAnimations] = useState({});
+
   const handleTileClick = (rowIndex, colIndex) => {
     if (selectedTile) {
       const [prevRow, prevCol] = selectedTile;
@@ -30,11 +30,13 @@ const GameBoard = () => {
       setSelectedTile([rowIndex, colIndex]);
     }
   };
-  // useEffect(() => {
-  //   if (audioRef.current) {
-  //     audioRef.current.volume = 1; // Уменьшить громкость до 50%
-  //   }
-  // }, []);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5; // Уменьшить громкость до 50%
+    }
+  }, []);
+
   const isAdjacent = (row1, col1, row2, col2) => {
     return (
       (Math.abs(row1 - row2) === 1 && col1 === col2) ||
@@ -149,7 +151,7 @@ const GameBoard = () => {
 
   return (
     <div className="game-board">
-      <audio src={bgMusic} autoPlay loop />
+      <audio src="/music/bgrSoundGame.mp3" ref={audioRef} autoPlay loop />
       {board.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
           {row.map((tile, colIndex) => (
