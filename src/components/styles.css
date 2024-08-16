@@ -1,0 +1,52 @@
+/* styles.css */
+.game-board {
+  display: flex;
+  flex-direction: column;
+  border: solid 15px #00000059;
+  border-radius: 2%;
+  padding: 5px;
+  background-color: #5e856c42;
+}
+
+.row {
+  display: flex;
+  justify-content: center; /* Центрирование рядов по горизонтали */
+}
+
+.score-board {
+  margin-top: 20px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+/* styles.css */
+.tile {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  padding: 2px;
+  margin: 2px;
+  transition: transform 0.3s ease-in-out;
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+}
+.tile.animate-left {
+  transform: translateX(-54px);
+}
+
+.tile.animate-right {
+  transform: translateX(54px);
+}
+
+.tile.animate-up {
+  transform: translateY(-54px);
+}
+
+.tile.animate-down {
+  transform: translateY(54px);
+}
